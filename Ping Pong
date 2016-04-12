@@ -1,0 +1,136 @@
+float ballX, ballY;
+float y1, y2;
+float speedX = 3.5;
+float speedY = 3.5;
+int score1 = 0;
+int score2 = 0;
+void setup() {
+ 
+  size(600,400);
+  ballX = 300;
+  ballY = 200;
+  y1 = 140;
+  y2 = 280;
+ 
+}
+void draw() {
+ 
+  scene();
+  ball();
+  //actionX();
+  actionY();
+  player1();
+  player2();
+  Paddle();
+  reset();
+  messages();
+ 
+}
+void scene() {
+  fill(0, 47, 255);
+  rect(0, 0, 600, 400);
+}
+void ball() {
+ 
+  stroke(0);
+  fill(255, 0, 145);
+  ellipse(ballX,ballY,40,40);
+ 
+}
+void player1() {
+ 
+  fill(0, 255, 217);
+  rect(50,y1,15,80);
+ 
+}
+void player2() {
+ 
+  fill(166, 0, 255);
+  rect(550,y2,15,80);
+ 
+}
+void actionX() {
+ 
+  if (ballX > width-20) {
+  //speedX = speedX + 1;
+  speedX =  -speedX;
+  }
+  ballX =  ballX + speedX;
+  if (ballX < 20) {
+  //speedX = speedX - 1;
+  speedX =  -speedX;
+  }
+}
+ 
+void actionY() {
+ 
+  if (ballY > 380) {
+  //speedY = speedY + 1;
+  speedY =  -speedY;
+  }
+  ballY =  ballY + speedY;
+  if (ballY < 20) {
+  //speedY = speedY - 1;
+  speedY =  -speedY;
+  }
+ 
+}
+void Paddle() {
+ 
+  if(ballY <= y1 + 80 && ballY >= y1) {
+  if(ballX <= 80 && ballX >= 55) {
+    //speedX = speedX + 1;
+    speedX =  -speedX;
+  }
+  }
+  ballX =  ballX + speedX;
+  if (ballY <= y2 + 80 && ballY > y2) {
+  if(ballX <= 555 && ballX >=530) {
+    //speedX = speedX - 1;
+    speedX =  -speedX;
+  }
+  }
+}
+void keyPressed() {
+ 
+  if(key == 'q') {
+  y1 = y1 - 40;
+  }
+  if(key == 'a') {
+  y1 = y1 + 40;
+  }
+  if(key == 'o') {
+  y2 = y2 - 40;
+  }
+  if(key == 'l') {
+  y2 = y2 + 40;
+  }
+}
+void reset() {
+ 
+  if (ballX > 600) {
+  ballX = 300;
+  ballY = 200;
+  y1 = 160;
+  y2 = 260;
+  score1 = score1 + 1;
+  speedX = speedX + 0.5;
+  speedY = speedY + 0.5;
+  }
+  if (ballX < 0) {
+  ballX = 300;
+  ballY = 200;
+  y1 = 160;
+  y2 = 260;
+  score2 = score2 +1;
+  speedX = speedX + 0.5;
+  speedY = speedY + 0.5;
+  }
+}
+void messages() {
+ 
+  fill(0,255,255);
+  text("Score: " + score1, 10, 10);
+  text("Score: " + score2, 550, 10);
+ 
+}
