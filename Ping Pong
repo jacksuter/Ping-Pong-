@@ -27,13 +27,15 @@ void draw() {
  
 }
 void scene() {
-  fill(0, 47, 255);
-  rect(0, 0, 600, 400);
+  fill(0,0,0);
+  rect(10, 500, 300, 0);
+  fill(0, 255, 4);
+  rect(0,0,600,400);
 }
 void ball() {
  
   stroke(0);
-  fill(255, 0, 145);
+  fill(255, 255, 0);
   ellipse(ballX,ballY,40,40);
  
 }
@@ -50,27 +52,15 @@ void player2() {
  
 }
 void actionX() {
- 
-  if (ballX > width-20) {
-  //speedX = speedX + 1;
-  speedX =  -speedX;
-  }
   ballX =  ballX + speedX;
-  if (ballX < 20) {
-  //speedX = speedX - 1;
+  if (ballX < 20 || ballX > width-20) {
   speedX =  -speedX;
   }
 }
  
 void actionY() {
- 
-  if (ballY > 380) {
-  //speedY = speedY + 1;
-  speedY =  -speedY;
-  }
   ballY =  ballY + speedY;
-  if (ballY < 20) {
-  //speedY = speedY - 1;
+  if (ballY < 20 || ballY > 380) {
   speedY =  -speedY;
   }
  
@@ -79,14 +69,12 @@ void Paddle() {
  
   if(ballY <= y1 + 80 && ballY >= y1) {
   if(ballX <= 80 && ballX >= 55) {
-    //speedX = speedX + 1;
     speedX =  -speedX;
   }
   }
   ballX =  ballX + speedX;
-  if (ballY <= y2 + 80 && ballY > y2) {
+  if (ballY <= y2 + 80 && ballY > y2){
   if(ballX <= 555 && ballX >=530) {
-    //speedX = speedX - 1;
     speedX =  -speedX;
   }
   }
@@ -114,8 +102,7 @@ void reset() {
   y1 = 160;
   y2 = 260;
   score1 = score1 + 1;
-  speedX = speedX + 0.5;
-  speedY = speedY + 0.5;
+
   }
   if (ballX < 0) {
   ballX = 300;
@@ -123,14 +110,12 @@ void reset() {
   y1 = 160;
   y2 = 260;
   score2 = score2 +1;
-  speedX = speedX + 0.5;
-  speedY = speedY + 0.5;
   }
 }
 void messages() {
  
-  fill(0,255,255);
-  text("Score: " + score1, 10, 10);
-  text("Score: " + score2, 550, 10);
+  fill(0);
+  text("Score: " + score1,10,10);
+  text("Score: " + score2,550,10);
  
 }
